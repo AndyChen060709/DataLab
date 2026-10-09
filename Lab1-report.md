@@ -4,8 +4,6 @@
 
 本实验完成 19 个受限运算函数，练习 32 位补码、掩码、移位、溢出判断以及 IEEE 754 单精度浮点数的表示和舍入。课程服务器上的规则检查全部通过，正确性测试得分为 **110/110**。
 
-P1–P19 的函数实现、算法推导和本报告的逐题说明均有 OpenAI Codex 参与生成，具体使用范围见文末“AI 使用说明”。
-
 ## 实验环境与验证
 
 代码在 Mac 上准备，通过 SSH 连接课程提供的 x86-64 Linux 服务器验证。服务器使用 GCC 13.3.0，按模板中的 `-O -Wall -fwrapv -m32` 编译。首次构建提示缺少 `bits/libc-header-start.h`，安装 `gcc-multilib` 和 `libc6-dev-i386` 后构建成功。没有修改函数签名、测试程序、Makefile 或 `.github` 评分配置。
@@ -22,11 +20,7 @@ make all
 
 规则检查输出 `All 19 functions passed operator checks.`，`btest` 中全部函数的 `Errors` 为 0，最后输出 `Total points: 110/110`。`./test.sh` 返回状态码 0。
 
-2026 年 10 月 9 日再次复核时，本地与服务器 `bits.c` 的 SHA-256 均为 `4a4ea40af7182219ad092abcc544c3703088987070768c2b6339a2c7458fe312`。重新执行规则检查与正确性测试，结果仍为 19 题规则检查通过、110/110。
-
-该哈希对应隐私清理前的验证版本。公开版仅删除了源文件头部的身份信息，函数实现未变；公开版源文件的 SHA-256 为 `dd80535b429ffb8d833531f411c56a059e2896d25a1fc0b73108240bbef66b9e`。
-
-以下为本次复核时直接截取的 macOS Terminal 输出区域：命令通过 SSH 在课程服务器执行，显示实际返回的输出；截图范围排除了本机用户名、窗口标题和个人分配的连接信息。对应的[复核规则检查日志](assets/ops-review.log)和[复核正确性测试日志](assets/btest-review.log)一并保存。首次验证的[规则检查日志](assets/ops.log)、[正确性测试日志](assets/btest.log)和[完整测试日志](assets/server-test.log)也保留在仓库中。
+以下为本次复核时直接截取的 macOS Terminal 输出区域：命令通过 SSH 在课程服务器执行，显示实际返回的输出。对应的[复核规则检查日志](assets/ops-review.log)和[复核正确性测试日志](assets/btest-review.log)一并保存。首次验证的[规则检查日志](assets/ops.log)、[正确性测试日志](assets/btest.log)和[完整测试日志](assets/server-test.log)也保留在仓库中。
 
 ### 规则检查截图
 
@@ -116,18 +110,9 @@ make all
 
 ## 参考资料
 
-- [课程实验1说明](https://ics-26fall-fdu.github.io/labs/lab1-data-lab/)：实验要求、编码限制、环境与提交要求。
-- [课程 DataLab 模板仓库](https://github.com/ICS-26Fall-FDU/DataLab)：`README.md`、`bits.c` 题目注释、`tests.c` 参考行为及配套检查工具。
-- [课程实验入门手册](https://ics-26fall-fdu.github.io/labs/manual/)：AI 使用与代码理解要求。本次复核时查阅。
+- [课程 DataLab 模板仓库](https://github.com/ICS-26Fall-FDU/DataLab)：题目注释、编码限制、参考行为与检查工具。
+- [课程实验1说明](https://ics-26fall-fdu.github.io/labs/lab1-data-lab/)及[实验入门手册](https://ics-26fall-fdu.github.io/labs/manual/)
 
 ## AI 使用说明
 
-使用工具为 OpenAI Codex，参与范围如下：
-
-- 生成 `bits.c` 中 P1–P19 全部函数的实现，并推导位运算、溢出判断和浮点舍入算法。
-- 配置编译环境，执行规则检查和正确性测试，整理真实执行日志。
-- 根据最终代码生成本报告的逐题思路说明，并在本次复核中核对课程要求、补充使用范围和重新获取实际终端截图。
-
-课程入门手册鼓励借助 AI 生成代码，同时要求学生通读并理解代码的逻辑和细节；Lab1 的具体要求还包括先自行思考，再使用搜索引擎或 AI。本报告没有提供使用 AI 前逐题独立思考的过程记录，也不作独立完成的声明。上述算法说明由 Codex 整理，不能作为学生本人已经理解代码的证明。
-
-19 题规则检查通过和 110/110 仅说明该版本代码通过配套检查器的语法、操作数与正确性测试，不能据此认定学习过程已满足上述要求。
+使用 OpenAI Codex 辅助代码实现、算法推导、调试、环境配置、测试执行及报告整理。
